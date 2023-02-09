@@ -23,8 +23,8 @@ class SaleFactory extends Factory
             'client_id' => Client::factory(),
             'seller_id' => Seller::factory(),
             'sold_at' => fake()->dateTimeBetween('-5 years', 'now'),
-            'status' => fake()->randomElement(Status::class),
-            'total_amount' => fake()->numberBetween(10000, 50000)
+            'total_amount' => fake()->numberBetween(10000, 50000),
+            'status' => fake()->randomElement(Status::cases()),
         ];
     }
 }

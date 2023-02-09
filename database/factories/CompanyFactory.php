@@ -18,7 +18,7 @@ class CompanyFactory extends Factory
     {
         return [
            'commission_rate' => fake()->numberBetween(1,6),
-           'name' => fake()->company()
+           'name' => fake()->company(),
         ];
     }
 }

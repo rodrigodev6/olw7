@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+use App\Models\Sale;
 use App\Models\User;
 use App\Models\Company;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Seller extends Model
 {
@@ -28,5 +30,9 @@ class Seller extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function sales(): HasMany    
+    {
+        return $this->hasMany(Sale::class);
+    }
 
 }
