@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Models\Client;
+use Illuminate\Support\Facades\DB;
 use App\Http\Requests\StoreClientRequest;
 use App\Http\Requests\UpdateClientRequest;
-use App\Models\Client;
+use Illuminate\Support\Facades\Hash;
 
 class ClientController extends Controller
 {
@@ -15,7 +18,9 @@ class ClientController extends Controller
      */
     public function index()
     {
-        //
+        $clients = Client::with('user', 'address')->paginate(10);
+
+        return view('clients.index', compact('clients'));
     }
 
     /**
@@ -25,7 +30,7 @@ class ClientController extends Controller
      */
     public function create()
     {
-        //
+        return view('clients.create');
     }
 
     /**
@@ -36,18 +41,23 @@ class ClientController extends Controller
      */
     public function store(StoreClientRequest $request)
     {
-        //
-    }
+        
+        $test = DB::transaction(function () use ($request){
+            $user = User::create([
+                'name' => $request->get('name'),
+                'email' => $request->get('email'),
+                'password' => Hash::make('123456')
+            ]);
+            
+            $user->client()->create([
+                'user_id' => $user->id,
+                'address_id' => $request->get('address_id')
+            ]);
+        });
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Client  $client
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Client $client)
-    {
-        //
+
+        return to_route('clients.index');
+
     }
 
     /**
@@ -58,7 +68,7 @@ class ClientController extends Controller
      */
     public function edit(Client $client)
     {
-        //
+        return view('clients.edit', compact('client'));
     }
 
     /**
@@ -70,7 +80,18 @@ class ClientController extends Controller
      */
     public function update(UpdateClientRequest $request, Client $client)
     {
-        //
+        DB::transaction(function () use ($client, $request){
+            $client->user()->update([
+                'name' => $request->get('name'),
+                'email' => $request->get('email'),
+            ]);
+
+            $client->update([
+                'address_id' => $request->get('address_id')
+            ]);
+        });
+
+        return to_route('clients.index');
     }
 
     /**

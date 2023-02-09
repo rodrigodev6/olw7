@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
+        <h2 class="text-xl font-semibold leading-tight text-gray-800">
             {{ __('Clients') }}
         </h2>
     </x-slot>
@@ -36,6 +36,12 @@
                     <x-primary-button class="ml-4">
                         {{ __('Save') }}
                     </x-primary-button>
+
+                    <a href="{{ route('clients.index') }}">
+                        <x-secondary-button class="ml-4 ">
+                            {{ __('Voltar') }}
+                        </x-secondary-button>
+                    </a>
                 </div>
             </form>
 

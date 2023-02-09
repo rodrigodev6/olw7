@@ -6,3 +6,5 @@ Dia 2:
 
 Toda parte de crud foi até a hora 2h20m da live.
 Apartir deste tempo será feito a integração com a openIA
+
+Ao usar o laravel sail, com a porta 8080, basta passar o localhost junto com o service que eu quero usar. Ex.: localhost/clients
