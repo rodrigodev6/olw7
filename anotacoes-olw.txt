@@ -1,1 +1,8 @@
+Dia 1:
 palavra chave missão 1: DEVDOFUTURO
+
+
+Dia 2:
+
+Toda parte de crud foi até a hora 2h20m da live.
+Apartir deste tempo será feito a integração com a openIA

@@ -2,14 +2,14 @@
 
 namespace App\Models;
 
-use App\Enums\status;
+use App\Enums\Status;
 use App\Models\Client;
 use App\Models\Seller;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Sale extends Model
 {
@@ -24,7 +24,7 @@ class Sale extends Model
     ];
 
     protected $casts = [
-        'status' => status::class,
+        'status' => Status::class,
     ];
 
     public function client(): BelongsTo
