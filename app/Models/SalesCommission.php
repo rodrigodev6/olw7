@@ -10,7 +10,7 @@ class SalesCommission extends Model
     public $incrementing = false;
     public $timestamps = false;
 
-    public function scopeGetCollumns()
+    public function scopeGetColumns()
     {
         return [
             'company',
