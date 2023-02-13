@@ -34,7 +34,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('/clients', ClientController::class);
 
     Route::resource('/clients', ClientController::class);
-    Route::get('/sales', [SaleController::class, 'index']);
+    Route::get('/sales', [SaleController::class, 'index'])->name('sales.index');
 });
 
 require __DIR__.'/auth.php';
